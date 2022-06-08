@@ -1,5 +1,5 @@
 /* globals require */
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
 const sassGlob = require('gulp-sass-glob');
 const sourcemaps = require('gulp-sourcemaps');
 const stylelint = require('gulp-stylelint');
