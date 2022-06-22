@@ -12,6 +12,7 @@ const cleanCSS = require('gulp-clean-css');
 ((() => {
   module.exports = (gulp, { cssConfig, debug }, { watch, validate }, browserSync) => {
     function cssCompile(done) {
+      const includePaths = cssConfig.includePaths;
       gulp.src(cssConfig.src)
         .pipe(sassGlob())
         .pipe(stylelint({
@@ -25,7 +26,7 @@ const cleanCSS = require('gulp-clean-css');
           outputStyle: cssConfig.outputStyle,
           sourceComments: cssConfig.sourceComments,
           // eslint-disable-next-line global-require
-          includePaths: require('node-normalize-scss').with(cssConfig.includePaths),
+          includePaths: require('node-normalize-scss').includePaths,
         }).on('error', sass.logError))
         .pipe(prefix(cssConfig.autoPrefixerBrowsers))
         .pipe(sourcemaps.init())
